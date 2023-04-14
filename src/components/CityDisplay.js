@@ -1,7 +1,10 @@
+import CityData from "./CityData";
+import CityMap from "./CityMap";
+
 const CityDisplay = ({ city }) => {
-    if (!city) return
     return (<>
-        {city}
+        <CityData city={city} />
+        <CityMap city={city} />
     </>);
 }
 

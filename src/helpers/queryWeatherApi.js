@@ -1,4 +1,4 @@
-export function queryWeatherApi(city) {
+export async function queryWeatherApi(city) {
 
     const options = {
         method: 'GET',
