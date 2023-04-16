@@ -1,11 +1,12 @@
+import React from "react";
 const InputForm = ({ onCitySubmit, onInputChange, userInput }) => {
     return (<>
-        <h5>input form</h5>
         <form onSubmit={onCitySubmit}>
-            <input type="text" onInput={e => onInputChange(e)} value={userInput} />
-            <input type="submit" />
+            <label class="hidden" htmlFor="locInput">Enter location</label>
+            <input placeholder="Enter location here" type="text" onInput={e => onInputChange(e)} value={userInput} id="locInput" />
+            <button type="submit">Search</button>
         </form>
-    </>);
+    </>)
 }
 
 export default InputForm;

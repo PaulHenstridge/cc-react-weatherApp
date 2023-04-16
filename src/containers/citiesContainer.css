@@ -1,0 +1,43 @@
+body {
+    background-color: rgb(216, 134, 134);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.data-container {
+    border: 2px solid black;
+    width: 50%;
+    margin: auto;
+    background-color: rgba(165, 42, 42, 0.476);
+}
+
+/* hsl 193, 100 50 */
+.header-container,
+.header-container>* {
+    background-color: brown;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.watchlist-container>h3 {
+    text-decoration: underline hsl(193, 100%, 50%);
+
+}
+
+.watchlist-container>h3:hover {
+    cursor: pointer;
+    color: rgb(78, 72, 72);
+}
+
+input {
+    background-color: rgb(216, 134, 134);
+    text-decoration: underline hsl(193, 100%, 50%);
+    font-size: 1.4rem;
+}
+
+button {
+    background-color: hsl(193, 100%, 50%);
+}
+
+.hidden {
+    display: none;
+}

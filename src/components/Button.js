@@ -1,6 +1,7 @@
-const Button = () => {
+import React from "react";
+const Button = ({ clickFunc, btnTxt }) => {
     return (<>
-        <button> Clickity CLick</button>
+        <button onClick={(e) => { clickFunc(e) }}> {btnTxt}</button>
     </>);
 }
 

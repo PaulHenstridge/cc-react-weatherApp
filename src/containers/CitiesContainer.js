@@ -1,13 +1,19 @@
+import React from "react";
+
 import { useState, useEffect } from 'react'
 
 import Header from "../components/Header";
 import CityDisplay from "../components/CityDisplay";
 import { queryWeatherApi } from "../helpers/queryWeatherApi"
+import WatchList from "../components/WatchList";
+
+import './citiesContainer.css'
 
 const CitiesContainer = () => {
     const [userInput, setUserInput] = useState('')
     const [cityName, setCityName] = useState('')
     const [cityObj, setCityObj] = useState('')
+    const [list, setList] = useState([])
 
     useEffect(() => {
         getData()
@@ -18,7 +24,7 @@ const CitiesContainer = () => {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'c98ccd2ed3msh80c72dbe4c5c14fp1b89afjsn578c5bb3f04a',
+                'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
                 'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
             }
         };
@@ -35,12 +41,12 @@ const CitiesContainer = () => {
                     country: location.country,
                     lat: location.lat,
                     lng: location.lon,
-                    time: location.localtime,
                     temp: current.temp_c,
                     windSpeed: current.wind_kph,
                     windDirection: current.wind_dir,
                     text: current.condition.text,
-                    icon: current.condition.icon
+                    icon: current.condition.icon,
+                    time: location.lacaltime
                 }
                 console.log(returnObj)
                 setCityObj(returnObj)
@@ -57,19 +63,29 @@ const CitiesContainer = () => {
         console.log('submit handled', userInput)
         e.preventDefault()
         setCityName(userInput)
-
-
     }
 
+    const handleAddToList = function (e) {
+        setList([...list, cityObj])
+    }
+
+    const handleViewfromList = function (selectedCity) {
+        setCityObj(selectedCity)
+    }
 
     return (
         <>
-            <h1>{userInput}</h1>
-            <h2>The cities container</h2>
-            <Header userInput={userInput} onCitySubmit={handleOnCitySubmit} onInputChange={handleOnInputChange} />
-            <CityDisplay city={cityObj} />
+            <Header
+                userInput={userInput}
+                onCitySubmit={handleOnCitySubmit}
+                onInputChange={handleOnInputChange}
+
+            />
+            <CityDisplay city={cityObj} addToList={handleAddToList} />
+            <WatchList list={list} viewFromList={handleViewfromList} />
         </>
     )
 }
 
 export default CitiesContainer;
+
